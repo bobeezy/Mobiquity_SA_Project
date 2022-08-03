@@ -1,0 +1,14 @@
+package main.java.api;
+
+/**
+ * @author lionel.mangoua
+ * date: 04/08/22
+ */
+
+import main.java.engine.DriverFactory;
+
+@SuppressWarnings("unchecked")
+public class APICommonMethods extends DriverFactory {
+
+    //
+}
