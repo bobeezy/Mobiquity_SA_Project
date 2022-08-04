@@ -30,7 +30,7 @@ import static org.hamcrest.Matchers.lessThan;
 public class DriverFactory {
 
     public static PropertyFileReader property = new PropertyFileReader();
-    public static String api_fileName = "api";
+    public static String API_FILE_NAME = "api";
     public static String testName;
     public static int userId;
     public static String[][] excelData = null;
@@ -38,7 +38,7 @@ public class DriverFactory {
     public static String[][] postData = null;
     public static String[][] userData = null;
     public static Map<String, String> currentTestData = null; //to get test data from excel sheet
-    public static String USER_DATA_XLSX_FILE_PATH = property.returnPropVal_api(api_fileName, "userDataSheetPath");
+    public static String USER_DATA_XLSX_FILE_PATH = property.returnPropVal_api(API_FILE_NAME, "userDataSheetPath");
     public static GlobalEnums.Environment env; //setup Environment
     public static final Logger LOGGER = LoggerFactory.getLogger(DriverFactory.class);
     public static List<Integer> postsIdList = new ArrayList<>();
@@ -49,8 +49,8 @@ public class DriverFactory {
     public static RequestSpecification requestSpec; //used with ValidatableResponse
     public static ResponseSpecification responseSpec; //used with ValidatableResponse
     public static ResponseSpecBuilder respec;
-    public static String contentTypeJson = property.returnPropVal_api(api_fileName, "content_type_json");
-    public static String cacheControl = property.returnPropVal_api(api_fileName, "cache_control");
+    public static String contentTypeJson = property.returnPropVal_api(API_FILE_NAME, "content_type_json");
+    public static String cacheControl = property.returnPropVal_api(API_FILE_NAME, "cache_control");
 
     @BeforeClass
     //region <startEngine>
@@ -100,7 +100,7 @@ public class DriverFactory {
      */
     public static String xlsxFilePath() {
 
-        String path = "";
+        String path;
         path = USER_DATA_XLSX_FILE_PATH;
 
         log("Setup .xlsx File Path: '" + path + "' successfully \n", "INFO", "text");
@@ -150,9 +150,9 @@ public class DriverFactory {
      * It stores every data based on the excel sheet name into currentTestData..
      * Every time we create a new Sheet in the .xlsx file, this function should be updated
      */
-    public static void setTestDataForTest(String test_name) {
+    public static void setTestDataForTest(String testCaseName) {
 
-        testName = test_name;
+        testName = testCaseName;
 
         if(checkTestOnArray(testName, commentData)) {
             currentTestData = getSpecificTestData(testName, commentData);

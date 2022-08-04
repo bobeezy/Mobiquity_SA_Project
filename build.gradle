@@ -154,6 +154,9 @@ task run_mobiquity_test(type: Test) {
     useTestNG() {
         useDefaultListeners = true
         suites '/src/main/resources/testSuites/MobiquityPositiveTestSuite.xml'
+        suites '/src/main/resources/testSuites/MobiquitySearchUserNegativeTestSuite.xml'
+        suites '/src/main/resources/testSuites/MobiquitySearchUserPostsNegativeTestSuite.xml'
+        suites '/src/main/resources/testSuites/MobiquitySearchUserCommentsNegativeTestSuite.xml'
     }
 }
 

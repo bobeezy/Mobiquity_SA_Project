@@ -1,0 +1,37 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Comment Negative Scenarios">
+    <test name="Search User Comments Using Incorrect Post Id - Negative Scenario">
+        <parameter name="testCase" value="SearchUserComments_IncorrectPostId_NegativeScenario"/>
+        <parameter name="environmentName" value="comment"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserCommentsByPostId"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Search User Comments Using Empty User Id - Negative Scenario">
+        <parameter name="testCase" value="SearchUserComments_EmptyPostId_NegativeScenario"/>
+        <parameter name="environmentName" value="comment"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserCommentsByPostId"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Search User Comments Using String As User Id - Negative Scenario">
+        <parameter name="testCase" value="SearchUserComments_StringPostId_NegativeScenario"/>
+        <parameter name="environmentName" value="comment"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserCommentsByPostId"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

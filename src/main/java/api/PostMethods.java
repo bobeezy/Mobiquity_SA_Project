@@ -24,10 +24,10 @@ public class PostMethods extends DriverFactory {
         //Build Headers
         buildCustomHeaders("Content-Type", contentTypeJson);
 
-        String uri_string = property.returnPropVal_api(api_fileName, "searchUserPostsByUserId_uri");
-        uri_string = uri_string.replace("user_id", usrId);
+        String uriString = property.returnPropVal_api(API_FILE_NAME, "searchUserPostsByUserId_uri");
+        uriString = uriString.replace("user_id", usrId);
 
-        response = api.getMethod(uri_string, customHeadersMap);
+        response = api.getMethod(uriString, customHeadersMap);
         return response;
     }
 

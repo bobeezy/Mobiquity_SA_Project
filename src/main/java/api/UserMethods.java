@@ -24,10 +24,10 @@ public class UserMethods extends DriverFactory {
         //Build Headers
         buildCustomHeaders("Content-Type", contentTypeJson);
 
-        String uri_string = property.returnPropVal_api(api_fileName, "searchUserByUsername_uri");
-        uri_string = uri_string.replace("user_name", usrName);
+        String uriString = property.returnPropVal_api(API_FILE_NAME, "searchUserByUsername_uri");
+        uriString = uriString.replace("user_name", usrName);
 
-        response = api.getMethod(uri_string, customHeadersMap);
+        response = api.getMethod(uriString, customHeadersMap);
         return response;
     }
 
@@ -44,8 +44,9 @@ public class UserMethods extends DriverFactory {
             response.body("isEmpty()", Matchers.is(true));
 
             log("ASSERT: We are not getting any value    \nEXPECTED: Empty list []  \nACTUAL: []", "INFO", "text");
-        } else {
-            String usrnm = "";
+        }
+        else {
+            String usrnm;
             usrnm = APICommonMethods.getValueFromJsonResp(response, "username");
             userId = Integer.parseInt(APICommonMethods.getValueFromJsonResp(response, "id"));
 

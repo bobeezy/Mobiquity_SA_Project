@@ -1,0 +1,37 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Post Negative Scenarios">
+    <test name="Search User Posts Using Incorrect User Id - Negative Scenario">
+        <parameter name="testCase" value="SearchUserPosts_IncorrectUserId_NegativeScenario"/>
+        <parameter name="environmentName" value="post"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserPostsByUserId"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Search User Posts Using Empty User Id - Negative Scenario">
+        <parameter name="testCase" value="SearchUserPosts_EmptyUserId_NegativeScenario"/>
+        <parameter name="environmentName" value="post"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserPostsByUserId"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Search User Posts Using String As User Id - Negative Scenario">
+        <parameter name="testCase" value="SearchUserPosts_StringUserId_NegativeScenario"/>
+        <parameter name="environmentName" value="post"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserPostsByUserId"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

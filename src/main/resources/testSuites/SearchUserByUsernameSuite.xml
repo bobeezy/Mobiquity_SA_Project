@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="User - Search User By Username">
+    <test name="Search User By Username - Positive Scenario">
+        <parameter name="testCase" value="SearchUser_PositiveScenario"/>
+        <parameter name="environmentName" value="user"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserByUsername"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

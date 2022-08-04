@@ -1,0 +1,37 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="User - Post - Comment Positive Scenarios">
+    <test name="Search User By Username - Positive Scenario">
+        <parameter name="testCase" value="SearchUser_PositiveScenario"/>
+        <parameter name="environmentName" value="user"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserByUsername"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Search User Posts By User Id - Positive Scenario">
+        <parameter name="testCase" value="SearchUser_PositiveScenario"/>
+        <parameter name="environmentName" value="post"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserPostsByUserId"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Search User Comments By Post Id - Positive Scenario">
+        <parameter name="testCase" value="SearchUser_PositiveScenario"/>
+        <parameter name="environmentName" value="comment"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserCommentsByPostId"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
