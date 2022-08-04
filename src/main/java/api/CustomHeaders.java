@@ -25,11 +25,11 @@ public class CustomHeaders {
     //endregion
 
     //region <Hard code header could be done in this method using Map>
-    public static void buildCustomHeaders() {
-
-        //Adding key-value pairs to a HashMap
-        customHeadersMap.put("content-type", contentTypeJson);
-        customHeadersMap.put("cache-control", cacheControl);
-    }
+//    public static void buildCustomHeaders() {
+//
+//        //Adding key-value pairs to a HashMap
+//        customHeadersMap.put("content-type", contentTypeJson);
+//        customHeadersMap.put("cache-control", cacheControl);
+//    }
     //endregion
 }

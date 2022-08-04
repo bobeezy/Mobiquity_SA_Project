@@ -1,0 +1,81 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="User Negative Scenarios">
+    <test name="Search User By Username Using Lower Case Username - Negative Scenario">
+        <parameter name="testCase" value="SearchUser_LowerCaseUsername_NegativeScenario"/>
+        <parameter name="environmentName" value="user"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserByUsername"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Search User By Username Using Upper Case Username - Negative Scenario">
+        <parameter name="testCase" value="SearchUser_UpperCaseUsername_NegativeScenario"/>
+        <parameter name="environmentName" value="user"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserByUsername"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Search User By Username Using Empty Username - Negative Scenario">
+        <parameter name="testCase" value="SearchUser_EmptyUsername_NegativeScenario"/>
+        <parameter name="environmentName" value="user"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserByUsername"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Search User By Username Using Wrong Username - Negative Scenario">
+        <parameter name="testCase" value="SearchUser_WrongUsername_NegativeScenario"/>
+        <parameter name="environmentName" value="user"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserByUsername"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Search User By Username Using Digit As Username - Negative Scenario">
+        <parameter name="testCase" value="SearchUser_DigitUsername_NegativeScenario"/>
+        <parameter name="environmentName" value="user"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserByUsername"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Search User By Username Using Name As Username - Negative Scenario">
+        <parameter name="testCase" value="SearchUser_NameAsUsername_NegativeScenario"/>
+        <parameter name="environmentName" value="user"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserByUsername"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Search User By Username Using Space In Username - Negative Scenario">
+        <parameter name="testCase" value="SearchUser_SpaceInUsername_NegativeScenario"/>
+        <parameter name="environmentName" value="user"/>
+        <classes>
+            <class name="testCases.MobiquityTest">
+                <methods>
+                    <include name="searchUserByUsername"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

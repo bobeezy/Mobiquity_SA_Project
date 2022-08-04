@@ -31,6 +31,7 @@ public class PropertyFileReader extends DriverFactory {
         }
         catch (final IOException e) {
             // TODO Auto-generated catch block
+            log("[ERROR] Failed to read " + fileName + ".properties file -- ", "ERROR", "text");
             e.printStackTrace();
         }
 

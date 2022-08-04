@@ -7,7 +7,6 @@ package main.java.api;
 
 import io.restassured.response.ValidatableResponse;
 import main.java.engine.DriverFactory;
-//import org.hamcrest.Matchers;
 import org.hamcrest.Matchers;
 import org.testng.Assert;
 
@@ -28,10 +27,10 @@ public class CommentMethods extends DriverFactory {
         //Build Headers
         buildCustomHeaders("Content-Type", contentTypeJson);
 
-        String uri_string = property.returnPropVal_api(api_fileName, "searchUserCommentsByPostId_uri");
-        uri_string = uri_string.replace("post_id", postId);
+        String uriString = property.returnPropVal_api(API_FILE_NAME, "searchUserCommentsByPostId_uri");
+        uriString = uriString.replace("post_id", postId);
 
-        response = api.getMethod(uri_string, customHeadersMap);
+        response = api.getMethod(uriString, customHeadersMap);
         return response;
     }
 
@@ -62,7 +61,7 @@ public class CommentMethods extends DriverFactory {
     //region <validateCommentId>
     public void validateCommentId(ValidatableResponse response, String post_Id) {
 
-        int commentId = 0;
+        int commentId;
         commentId = Integer.parseInt(APICommonMethods.getValueFromJsonResp(response, "id"));
 
         Assert.assertEquals(commentId + "", post_Id);
@@ -74,7 +73,7 @@ public class CommentMethods extends DriverFactory {
     //region <validateCommentEmail>
     public void validateCommentEmail(ValidatableResponse response) {
 
-        String extractedEmail = "";
+        String extractedEmail;
         extractedEmail = APICommonMethods.getValueFromJsonResp(response, "email");
 
         //validate email format using the official java email package
