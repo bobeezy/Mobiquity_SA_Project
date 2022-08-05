@@ -16,8 +16,8 @@ dist/
 # Log files
 *.log
 
-# Package files //TODO uncomment *.jar
-#*.jar
+# Package files
+*.jar
 
 # Maven
 target/
