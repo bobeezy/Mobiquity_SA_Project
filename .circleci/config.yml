@@ -1,0 +1,49 @@
+# Java Gradle CircleCI 2.1 configuration file
+#
+# Check https://circleci.com/docs/2.1/language-java/ for more details
+#
+version: 2.1
+jobs:
+  build:
+    docker: # run the steps with docker
+      # specify the version you desire here
+      - image: circleci/openjdk:11-jdk
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.1/circleci-images/
+      # - image: circleci/postgres:9.4
+
+    working_directory: ~/repo # directory where steps will run
+
+    environment:
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+
+    steps: # a collection of executable commands
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache: # restore the saved cache after the first run or if 'build.gradle' has changed
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: gradle dependencies # gets the project dependencies
+
+      - save_cache: # saves the project dependencies
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+      - store_test_results:
+          # Upload test results for display in Test Summary: https://circleci.com/docs/collect-test-data/
+          path: build/test-results/test
+      - store_artifacts: # Upload test results for display in Artifacts: https://circleci.com/docs/artifacts/
+          path: build/test-results/test
+
+      # run tests!
+      - run: gradle run_mobiquity_test
+#          - run: gradle test
