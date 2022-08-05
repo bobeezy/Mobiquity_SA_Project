@@ -10,9 +10,8 @@ import main.java.api.PostMethods;
 import main.java.api.UserMethods;
 import main.java.engine.DriverFactory;
 import main.java.utils.SetEnvironmentDataUtility;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Features;
 
@@ -33,27 +32,17 @@ public class MobiquityTest extends DriverFactory {
 
     @Features("Mobiquity Test")
     @Description("Perform an API request to search user by username")
-    @Parameters({"testCase", "environmentName"})
     @Test
-    public void searchUserByUsername(String testCase, String environmentName) throws Exception {
-
-//        setTestDataForTest(testCase); //set Data to extract from sheet
-//        setEnv.setTestEnvironment(environmentName); //set values
+    public void searchUserByUsername() throws Exception {
 
         response = userMeth.get_searchUserByUsername(currentTestData.get("Username"));
         userMeth.validateSearchUserByUsername(response, 200, currentTestData.get("Username"), currentTestData.get("ScenarioType"));
-
-        log("\n=============== SearchUserByUsername test executed successfully ===============\n", "INFO", "text");
     }
 
     @Features("Mobiquity Test")
     @Description("Perform an API request to search user posts by userId")
-    @Parameters({"testCase", "environmentName"})
     @Test
-    public void searchUserPostsByUserId(String testCase, String environmentName) throws Exception {
-
-//        setTestDataForTest(testCase); //set Data to extract from sheet
-//        setEnv.setTestEnvironment(environmentName); //set values
+    public void searchUserPostsByUserId() throws Exception {
 
         if(currentTestData.get("ScenarioType").equalsIgnoreCase("Negative")) {
             response = postMeth.get_searchUserPostsByUserId(currentTestData.get("Id")); //use id value from excel sheet
@@ -63,18 +52,12 @@ public class MobiquityTest extends DriverFactory {
         }
 
         postMeth.validateSearchUserPostsByUserId(response, 200, String.valueOf(userId), currentTestData.get("ScenarioType"));
-
-        log("\n=============== SearchUserPostsByUserId test executed successfully ===============\n", "INFO", "text");
     }
 
     @Features("Mobiquity Test")
     @Description("Perform an API request to search user comments by id")
-    @Parameters({"testCase", "environmentName"})
     @Test
-    public void searchUserCommentsByPostId(String testCase, String environmentName) throws Exception {
-
-//        setTestDataForTest(testCase); //set Data to extract from sheet
-//        setEnv.setTestEnvironment(environmentName); //set values
+    public void searchUserCommentsByPostId() throws Exception {
 
         int extractedUserId;
 
@@ -96,7 +79,14 @@ public class MobiquityTest extends DriverFactory {
             postsIdList.removeAll(postsIdList);
             postsUserIdList.removeAll(postsUserIdList);
         }
-
-        log("\n=============== SearchUserCommentsByPostId test executed successfully ===============\n", "INFO", "text");
     }
+
+    @AfterMethod
+    //region <afterTestScreenshots>
+    public void afterTestScreenshots(ITestResult result) {
+
+        //Print Log with testName and take screenshot after each @Test method
+        log("\n=============== " + result.getName() + " test executed successfully ===============\n","INFO",  "text");
+    }
+    //endregion
 }
