@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="MOBIQUITY Regression Pack" verbose="1">
+    <suite-files>
+        <!--                          MOBIQUITY POSITIVE SCENARIOS                         -->
+        <suite-file path="src/main/resources/testSuites/MobiquityPositiveTestSuite.xml"/>
+        <!--                          MOBIQUITY SEARCH USER BY USERNAME                          -->
+        <suite-file path="src/main/resources/testSuites/SearchUserByUsernameSuite.xml"/>
+        <!--                          MOBIQUITY SEARCH USER COMMENTS NEGATIVE SCENARIOS                          -->
+        <suite-file path="src/main/resources/testSuites/MobiquitySearchUserCommentsNegativeTestSuite.xml"/>
+        <!--                          MOBIQUITY SEARCH USER NEGATIVE SCENARIOS                          -->
+        <suite-file path="src/main/resources/testSuites/MobiquitySearchUserNegativeTestSuite.xml"/>
+        <!--                          MOBIQUITY SEARCH USER POSITIVE SCENARIOS                          -->
+        <suite-file path="src/main/resources/testSuites/MobiquitySearchUserPostsNegativeTestSuite.xml"/>
+    </suite-files>
+</suite>
