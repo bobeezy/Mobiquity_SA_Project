@@ -332,3 +332,4 @@ out/
 # Allure report
 allure-report
 allure-results
+*.txt
