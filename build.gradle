@@ -130,7 +130,7 @@ dependencies {
     testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '4.4.0'
 
     //TestNG
-    testImplementation group: 'org.testng', name: 'testng', version: '7.6.1'
+    testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.20.2'
     testImplementation group: 'org.assertj', name: 'assertj-core-java8', version: '1.0.0m1' //AssertJ Fluent Assertions For Java 8
 }
@@ -149,6 +149,7 @@ task run_mobiquity_test(type: Test) {
     useTestNG() {
         useDefaultListeners = true
         suites '/src/main/resources/testSuites/MobiquityPositiveTestSuite.xml'
+        suites 'src/main/resources/testSuites/SearchUserByUsernameSuite.xml'
         suites '/src/main/resources/testSuites/MobiquitySearchUserNegativeTestSuite.xml'
         suites '/src/main/resources/testSuites/MobiquitySearchUserPostsNegativeTestSuite.xml'
         suites '/src/main/resources/testSuites/MobiquitySearchUserCommentsNegativeTestSuite.xml'
@@ -158,6 +159,6 @@ task run_mobiquity_test(type: Test) {
 task run_regression_test(type: Test) {
     useTestNG() {
         useDefaultListeners = true // To generate reports by TestNG library
-        suites 'src/main/resources/testSuites/regressionTestSuite.xml'
+        suites 'src/main/resources/testSuites/RegressionTestSuite.xml'
     }
 }
