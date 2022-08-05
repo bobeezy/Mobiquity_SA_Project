@@ -46,5 +46,3 @@ jobs:
 
       # run tests!
       - run: ./gradlew run_mobiquity_test
-#      - run: gradle run_mobiquity_test
-#          - run: gradle test
