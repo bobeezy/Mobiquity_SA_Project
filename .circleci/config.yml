@@ -45,5 +45,6 @@ jobs:
           path: build/test-results/test
 
       # run tests!
-      - run: gradle run_mobiquity_test
+      - run: ./gradlew run_mobiquity_test
+#      - run: gradle run_mobiquity_test
 #          - run: gradle test
