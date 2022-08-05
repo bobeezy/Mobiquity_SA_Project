@@ -104,7 +104,6 @@ dependencies {
     implementation group: 'ru.yandex.qatools.allure', name: 'allure-java-annotations', version: '1.5.4' //Allure Java Annotations
     implementation group: 'ru.yandex.qatools.allure', name: 'allure-report-data', version: '1.5.4' //Allure Report Data
     implementation group: 'ru.yandex.qatools.allure', name: 'allure-testng-adaptor', version: '1.5.4' //Allure TestNG Adaptor
-//    implementation group: 'ru.yandex.qatools.allure', name: 'allure-testng-adaptor', version: '1.4.0.RC4+' //Allure TestNG Adaptor
 
     //Apache POI
     implementation group: 'org.apache.poi', name: 'poi', version: '5.0.0' //To read files from excel sheets
