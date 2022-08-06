@@ -6,6 +6,7 @@ package main.java.utils;
  */
 
 import main.java.engine.DriverFactory;
+import main.java.exceptions.ReadPropertyFileException;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -31,8 +32,7 @@ public class PropertyFileReader extends DriverFactory {
         }
         catch (final IOException e) {
             // TODO Auto-generated catch block
-            log("[ERROR] Failed to read " + fileName + ".properties file -- ", "ERROR", "text");
-            e.printStackTrace();
+            throw new ReadPropertyFileException("[ERROR] Failed to read " + fileName + ".properties file -- " + e.getMessage());
         }
 
         return value;

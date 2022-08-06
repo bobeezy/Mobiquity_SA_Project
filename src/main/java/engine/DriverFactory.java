@@ -13,6 +13,10 @@ import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import main.java.config.GlobalEnums;
+import main.java.exceptions.BaseUrlSetupException;
+import main.java.exceptions.CheckTestArrayException;
+import main.java.exceptions.ExtractedTestDataException;
+import main.java.exceptions.SheetNameException;
 import main.java.utils.ExcelUtility;
 import main.java.utils.PropertyFileReader;
 import org.apache.log4j.PropertyConfigurator;
@@ -77,19 +81,26 @@ public class DriverFactory {
     //region <Set Up Base Url>
     public static void setUpBaseUrl() {
 
-        RestAssured.baseURI = env.baseUrl;
-        RestAssured.basePath = env.path;
+        try {
+            RestAssured.baseURI = env.baseUrl;
+            RestAssured.basePath = env.path;
 
-        builder = new RequestSpecBuilder();
-        respec = new ResponseSpecBuilder();
+            builder = new RequestSpecBuilder();
+            respec = new ResponseSpecBuilder();
 
-        builder.addFilter(new AllureRestAssured());//To setup Filter that gonna attach Request/Response logs to report
-        respec.expectResponseTime(lessThan(10L), TimeUnit.SECONDS); //verify response time lesser than 10 milliseconds
+            builder.addFilter(new AllureRestAssured());//To setup Filter that gonna attach Request/Response logs to report
+            respec.expectResponseTime(lessThan(10L), TimeUnit.SECONDS); //verify response time lesser than 10 milliseconds
 
-        requestSpec = builder.build();
-        responseSpec = respec.build();
+            requestSpec = builder.build();
+            responseSpec = respec.build();
 
-        log("Setup Base URL successfully \n", "INFO", "text");
+            log("Setup Base URL successfully \n", "INFO", "text");
+        }
+        catch(Exception e) {
+            throw new BaseUrlSetupException("[ERROR] Something went wrong setting up the base URL --- " + e.getMessage());
+        }
+
+
     }
     //endregion
 
@@ -152,21 +163,26 @@ public class DriverFactory {
      */
     public static void setTestDataForTest(String testCaseName) {
 
-        testName = testCaseName;
+        try {
+            testName = testCaseName;
 
-        if(checkTestOnArray(testName, commentData)) {
-            currentTestData = getSpecificTestData(testName, commentData);
-        } //Pet sheet in 'UserData.xlsx' file
+            if(checkTestOnArray(testName, commentData)) {
+                currentTestData = getSpecificTestData(testName, commentData);
+            } //Pet sheet in 'UserData.xlsx' file
 
-        if(checkTestOnArray(testName, postData)) {
-            currentTestData = getSpecificTestData(testName, postData);
-        } //Store sheet in 'UserData.xlsx' file
+            if(checkTestOnArray(testName, postData)) {
+                currentTestData = getSpecificTestData(testName, postData);
+            } //Store sheet in 'UserData.xlsx' file
 
-        if(checkTestOnArray(testName, userData)) {
-            currentTestData = getSpecificTestData(testName, userData);
-        } //User sheet in 'UserData.xlsx' file
+            if(checkTestOnArray(testName, userData)) {
+                currentTestData = getSpecificTestData(testName, userData);
+            } //User sheet in 'UserData.xlsx' file
 
-        log("Setup test data for test '" + testName + "' successfully \n", "INFO", "text");
+            log("Setup test data for test '" + testName + "' successfully \n", "INFO", "text");
+        }
+        catch(Exception e) {
+            throw new SheetNameException("[ERROR] Something went wrong reading the sheet Name --- " + e.getMessage());
+        }
     }
     //endregion
 
@@ -176,21 +192,26 @@ public class DriverFactory {
      */
     public static Map<String, String> getSpecificTestData(String testName, String[][] excelData) {
 
-        currentTestData = new LinkedHashMap<>();
+        try {
+            currentTestData = new LinkedHashMap<>();
 
-        int numRows = excelData.length; //Get number of rows
-        int numCols = excelData[0].length; //Get number of columns
+            int numRows = excelData.length; //Get number of rows
+            int numCols = excelData[0].length; //Get number of columns
 
-        for(int i = 0; i < numRows; i++) {
-            if(excelData[i][0].equalsIgnoreCase(testName)) {
-                for(int j = 0; j < numCols; j++) {
-                    currentTestData.put(excelData[0][j], excelData[i][j]);
+            for(int i = 0; i < numRows; i++) {
+                if(excelData[i][0].equalsIgnoreCase(testName)) {
+                    for(int j = 0; j < numCols; j++) {
+                        currentTestData.put(excelData[0][j], excelData[i][j]);
+                    }
                 }
             }
-        }
 
-        log("Get specific data for test case: '" + testName + "' successfully \n", "INFO", "text");
-        return currentTestData;
+            log("Get specific data for test case: '" + testName + "' successfully \n", "INFO", "text");
+            return currentTestData;
+        }
+        catch (Exception e) {
+            throw new ExtractedTestDataException("[ERROR] Something went wrong while getting specific data for test case " + testName + " --- " + e.getMessage());
+        }
     }
     //endregion
 
@@ -201,15 +222,20 @@ public class DriverFactory {
      */
     public static boolean checkTestOnArray(String testName, String[][] excelData) {
 
-        int numRows = excelData.length;
+        try {
+            int numRows = excelData.length;
 
-        for(int i = 0; i < numRows; i++) {
-            if(excelData[i][0].equalsIgnoreCase(testName)) {
-                return true;
+            for(int i = 0; i < numRows; i++) {
+                if(excelData[i][0].equalsIgnoreCase(testName)) {
+                    return true;
+                }
             }
-        }
 
-        return false;
+            return false;
+        }
+        catch (Exception e){
+            throw new CheckTestArrayException("[ERROR] Something went wrong while checking that the testName extracted from the excel sheet is stored in Array --- " + e.getMessage());
+        }
     }
     //endregion
 
