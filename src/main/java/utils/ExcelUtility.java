@@ -6,6 +6,7 @@ package main.java.utils;
  */
 
 import main.java.engine.DriverFactory;
+import main.java.exceptions.ReadFileException;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.File;
@@ -51,8 +52,7 @@ public class ExcelUtility extends DriverFactory {
             return excelData;
         }
         catch(IOException e) {
-            log("Something went wrong reading the excel sheet --- " + e, "ERROR", "text");
-            return excelData;
+            throw new ReadFileException("[ERROR] Something went wrong reading the excel sheet --- " + e.getMessage());
         }
     }
     //endregion
