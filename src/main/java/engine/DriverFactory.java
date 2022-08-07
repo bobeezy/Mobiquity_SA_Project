@@ -54,7 +54,6 @@ public class DriverFactory {
     public static ResponseSpecification responseSpec; //used with ValidatableResponse
     public static ResponseSpecBuilder respec;
     public static String contentTypeJson = property.returnPropVal_api(API_FILE_NAME, "content_type_json");
-    public static String cacheControl = property.returnPropVal_api(API_FILE_NAME, "cache_control");
 
     @BeforeClass
     //region <startEngine>
